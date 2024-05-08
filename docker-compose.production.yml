@@ -17,6 +17,8 @@ services:
     volumes:
       - static_volume:/backend_static
       - media:/app/media/
+    depends_on:
+      - db
   frontend:
     image: vernette/kittygram_frontend
     env_file: .env
