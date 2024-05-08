@@ -46,3 +46,25 @@ jobs:
 
     - name: Test with pytest
       run: pytest -v
+  
+  frontend_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up nodeJS
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: |
+        cd frontend/
+        npm ci
+
+    - name: Test frontend
+      # Запускаем тесты
+      run: |
+        cd frontend/
+        npm run test
+
