@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv(
     get_random_secret_key()
 )
 
-DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG', 'True')
 
 ALLOWED_HOSTS = [
     'kittygram-public.hopto.org'
