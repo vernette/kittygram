@@ -1,26 +1,85 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
 
-## Что нужно сделать
+## Запуск проекта
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+Клонируйте репозиторий и перейдите в папку с проектом:
 
-## Как проверить работу с помощью автотестов
-
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+```bash
+git clone https://github.com/vernette/kittygram_final
+cd kittygram_final
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+Создайте виртуальное окружение и активируйте его:
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+```bash
+python -m venv venv
+source venv/bin/activate
+```
 
-## Чек-лист для проверки перед отправкой задания
+Установите зависимости:
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+```bash
+pip install -r backend/requirements.txt
+```
+
+Создайте файл `.env` в корне проекта и внесите свои данные. Для примера можно воспользоваться файлом `.env.example`:
+
+```plaintext
+POSTGRES_DB=kittygram
+POSTGRES_USER=kittygram_user
+POSTGRES_PASSWORD=kittygram_password
+DB_HOST=db
+DB_PORT=5432
+DJANGO_SECRET_KEY=django-insecure-123
+DJANGO_DEBUG=False
+```
+
+`DJANGO_SECRET_KEY` можно не заполнять вручную, так он будет сгенерирован автоматически.
+
+Запустите оркестр:
+
+```bash
+sudo docker compose up
+```
+
+## Примеры запросов
+
+Получить список котиков:
+
+```http
+GET /api/cats/
+```
+
+Добавить котика:
+
+```http
+POST /api/cats/
+Content-Type: application/json
+
+{
+  'color': '#FFFFFF',
+  'achievements': [],
+  'image': 'Картинка в Base64',
+  'name': 'Имя котика',
+  'birth_year': 'Год рождения котика',
+}
+```
+
+Удалить котика:
+
+```http
+DELETE /api/cats/{id котика}/
+```
+
+## Используемые технологии
+
+| Тип        | Название   |
+| ---------- | ---------- |
+| Веб-сервер | Nginx      |
+| Бэкенд     | Django     |
+| Фронтенд   | React      |
+| БД         | PostgreSQL |
+
+## Автор
+
+- [Никита Скрябин](https://github.com/vernette)
