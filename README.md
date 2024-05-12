@@ -59,11 +59,11 @@ POST /api/cats/
 Content-Type: application/json
 
 {
-  'color': '#FFFFFF',
-  'achievements': [],
-  'image': 'Картинка в Base64',
-  'name': 'Имя котика',
-  'birth_year': 'Год рождения котика',
+  "color": "#FFFFFF",
+  "achievements": [],
+  "image": "Картинка в Base64",
+  "name": "Имя котика",
+  "birth_year": "Год рождения котика",
 }
 ```
 
