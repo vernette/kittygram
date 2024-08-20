@@ -11,6 +11,8 @@ git clone https://github.com/vernette/kittygram_final
 cd kittygram_final
 ```
 
+### Вручную
+
 Создайте виртуальное окружение и активируйте его:
 
 ```bash
@@ -37,6 +39,8 @@ DJANGO_DEBUG=False
 ```
 
 `DJANGO_SECRET_KEY` можно не заполнять вручную, так он будет сгенерирован автоматически.
+
+### Docker
 
 Запустите оркестр:
 
